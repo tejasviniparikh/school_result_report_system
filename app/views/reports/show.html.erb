@@ -1,0 +1,32 @@
+<div class='row'>
+  <div class='col-sm-12'>
+    <%= select_tag "school_id", options_from_collection_for_select(@schools, "id", "name"), include_blank: 'select school', id: 'school_select' %>
+    <div id='school_wise_line_chart'></div>
+  </div>
+  <div class='col-sm-12'>
+    <%= select_tag "year", options_for_select(Constants::YEARS, 'select year'), id: 'year_select' %>
+    <div id='year_wise_pie_chart'></div>
+  </div>
+</div>
+<script>
+  $(document).on('change', '#school_select', function (){
+    $.ajax({
+      type: 'GET',
+      url: '/school_wise_line_chart',
+      dataType: 'script',
+      data: {
+        school_id: $(this).val()
+      }
+    });
+  })
+  $(document).on('change', '#year_select', function (){
+    $.ajax({
+      type: 'GET',
+      url: '/year_wise_result',
+      dataType: 'script',
+      data: {
+        year: $(this).val()
+      }
+    });
+  })
+</script>
