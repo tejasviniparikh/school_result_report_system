@@ -7,7 +7,8 @@ module Api
       end
 
       def create
-        school = School.new(school_params)
+        school = School.find_or_create_by(name: params.dig(:school, :name))
+        school.assign_attributes(school_params)
         if school.save
           render_success({ school: serialized_json(school) }, "School details added successfully.")
         else
