@@ -1,0 +1,4 @@
+<%= bar_chart [
+  {name: "No of students appeared for exam", data: school.school_reports.pluck(:year, :wrote) },
+  {name: "No of students passed an exam", data: school.school_reports.pluck(:year, :passed) }
+] %>

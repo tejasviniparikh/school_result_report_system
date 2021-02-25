@@ -5,4 +5,7 @@ Rails.application.routes.draw do
       resources :schools, only: %i[index create]
     end
   end
+  root to: "reports#show"
+  get 'school_wise_line_chart', to: 'reports#school_wise_line_chart'
+  get 'year_wise_result', to: 'reports#year_wise_result'
 end
